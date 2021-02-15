@@ -1,5 +1,5 @@
 {
-  "name": "myDiary",
+  "name": "mydiary",
   "version": "1.0.0",
   "description": "Diary based API that utilizes Artificial Intelligence to detect the sentiment analysis of the user’s diary entry.",
   "main": "index.js",
