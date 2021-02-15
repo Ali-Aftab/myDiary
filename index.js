@@ -31,6 +31,7 @@ app.use(express.static(path.join(__dirname, ".", "public")));
 // app.use("/api", require("./server/apiRoutes")); // matches all requests to /api
 require("./server/routes/auth.route")(app);
 require("./server/routes/user.route")(app);
+require("./server/routes/entry.route")(app);
 
 app.get("*", function (req, res, next) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
