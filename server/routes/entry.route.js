@@ -1,4 +1,5 @@
-const { authJwt } = require("../middleware");
+const { postNewEntry } = require("../controllers/entry.controller");
+const { authJwt, sendEntryToIBM } = require("../middleware");
 
 module.exports = function (app) {
   app.use(function (req, res, next) {
@@ -9,5 +10,10 @@ module.exports = function (app) {
     next();
   });
 
-  app.post("/api/entry/newEntry", [authJwt.verifyToken]);
+  app.post(
+    "/api/entry/newEntry",
+    [authJwt.verifyToken],
+    sendEntryToIBM,
+    postNewEntry
+  );
 };
