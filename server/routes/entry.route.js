@@ -1,4 +1,7 @@
-const { postNewEntry } = require("../controllers/entry.controller");
+const {
+  postNewEntry,
+  listAllUserEntry,
+} = require("../controllers/entry.controller");
 const { authJwt, sendEntryToIBM } = require("../middleware");
 
 module.exports = function (app) {
@@ -16,4 +19,6 @@ module.exports = function (app) {
     sendEntryToIBM,
     postNewEntry
   );
+
+  app.get("/api/entry/listAll", [authJwt.verifyToken], listAllUserEntry);
 };

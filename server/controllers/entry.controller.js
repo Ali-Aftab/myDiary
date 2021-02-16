@@ -46,6 +46,26 @@ exports.postNewEntry = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.json({ message: "Error occured when saving new Entry post" });
+    return res.json({
+      message: "Error occured when saving new Entry post",
+      error,
+    });
+  }
+};
+
+exports.listAllUserEntry = async (req, res) => {
+  try {
+    const { count, rows } = await EntryTone.findAndCountAll({
+      where: {
+        userId: req.userId,
+      },
+    });
+    res.json({ message: `You have ${count} entries!`, data: rows });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      error,
+      message: "Error occured when grabbing all of your diary entries",
+    });
   }
 };
