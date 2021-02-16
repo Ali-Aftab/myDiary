@@ -9,6 +9,10 @@ const EntryTone = db.define("entryTone", {
     type: Sequelize.FLOAT,
     defaultValue: 0,
   },
+  disgust: {
+    type: Sequelize.FLOAT,
+    defaultValue: 0,
+  },
   fear: {
     type: Sequelize.FLOAT,
     defaultValue: 0,
