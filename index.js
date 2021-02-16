@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, ".", "public")));
 require("./server/routes/auth.route")(app);
 require("./server/routes/user.route")(app);
 require("./server/routes/entry.route")(app);
+require("./server/routes/analyze.route")(app);
 
 app.get("*", function (req, res, next) {
   res.sendFile(path.join(__dirname, "./public/index.html"));
