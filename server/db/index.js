@@ -15,4 +15,4 @@ User.hasMany(SentenceTone);
 SentenceTone.belongsTo(EntryTone);
 SentenceTone.belongsTo(User);
 
-module.exports = { db, User };
+module.exports = { db, User, EntryTone, SentenceTone };
