@@ -10,6 +10,9 @@ User.hasMany(EntryTone);
 EntryTone.belongsTo(User);
 
 EntryTone.hasMany(SentenceTone);
+User.hasMany(SentenceTone);
+
 SentenceTone.belongsTo(EntryTone);
+SentenceTone.belongsTo(User);
 
 module.exports = { db, User };
