@@ -44,7 +44,7 @@ module.exports.searchSentences = async (req, res) => {
   }
 };
 
-module.exports.detectAverageMood = async (req, res) => {
+module.exports.detectAverageTone = async (req, res) => {
   try {
     const { userId } = req;
     let averageMood;

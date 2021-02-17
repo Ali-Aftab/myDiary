@@ -1,7 +1,7 @@
 const {
   searchEntries,
   searchSentences,
-  detectAverageMood,
+  detectAverageTone,
 } = require("../controllers/analyze.controller");
 const { authJwt } = require("../middleware");
 
@@ -21,5 +21,5 @@ module.exports = function (app) {
     searchSentences
   );
 
-  app.get("/api/analyze/averagemood", [authJwt.verifyToken], detectAverageMood);
+  app.get("/api/analyze/averagetone", [authJwt.verifyToken], detectAverageTone);
 };
