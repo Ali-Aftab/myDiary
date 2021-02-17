@@ -16,9 +16,7 @@ To run this application:
 4.  Make a new PostgreSQL database by writing `createdb mydiary`
 5.  Create a .env file by typing `touch .env` to store your secret keys
 6.  In the .env file type
-    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/>
-    > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/>
-    > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
+    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/> > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/> > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
 7.  Type `npm run start-dev` in your terminal and you can use the API!
 
 ## API
@@ -31,8 +29,8 @@ How to signup and login.
 
 - POST `/api/auth/signup` allows anyone to make an account <br/>
   &nbsp;&nbsp;-Requires an email and password key inside the body <br/>
-  &nbsp;&nbsp;-Example: {email: test@test.com, password: password1} <br/>
-- POST `/api/auth/signin` when logged in, the response will give the user an access token.
+  &nbsp;&nbsp;-Example: {email: test@test.com, password: password1} <br/> <br/>
+- POST `/api/auth/signin` when logged in, the response will give the user an access token. <br/>
   &nbsp;&nbsp;-Requires an email and password key inside the body. You will receive an x-access-token. For all routes below you must place your token in the header.<br/>
   &nbsp;&nbsp;-The x-access-token lasts for 24 hours. <br/>
   &nbsp;&nbsp;-Example: {x-access-token: |X-ACCESS-TOKEN-KEY|} <br/>
