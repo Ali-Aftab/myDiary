@@ -1,10 +1,10 @@
 # myDiary
 
-Diary based API that utilizes Artificial Intelligence to detect the sentiment analysis of the user’s diary entry. This project used Node.js, Express, PostgreSQL, and Sequelize.
+Diary-based API that utilizes Artificial Intelligence to detect the sentiment analysis of the user’s diary entry. This project used Node.js, Express, PostgreSQL, and Sequelize.
 
 ## Requirements
 
-You need [Node.js/NPM](https://nodejs.org/) and [Git](https://git-scm.com/) installed into your system. Also go to [IBM Cloud](https://cloud.ibm.com/) to register and sign up for the free tier service for their Tone Analyzer. _Remember to get your API Key and API URL!_
+You need [Node.js/NPM](https://nodejs.org/) and [Git](https://git-scm.com/) installed into your system. Also, go to [IBM Cloud](https://cloud.ibm.com/) to register and sign up for the free tier service for their Tone Analyzer. _Remember to get your API Key and API URL!_
 
 ## Get Started
 
@@ -42,7 +42,7 @@ How to signup and login.
 ### Entry Routes (Write Diary Entries/ Find Diary Entry or Sentence)
 
 - POST `/api/entry/newEntry` allows registered user to submit a diary entry <br/>
-  &nbsp;&nbsp;-Requires a diary entry and assigned to the message key in the body. <br/>
+  &nbsp;&nbsp;-Requires a diary entry and is assigned to the message key in the body. <br/>
   &nbsp;&nbsp;-Example: {message: "I love Tacos, it makes me think better during the day!"} <br/> <br/>
 - GET `/api/entry/listAll` allows a user to view all their previous entries and the overall tone for each one. <br/>
   &nbsp;&nbsp;-Will provide the entryToneId (will be labeled as "id" in the JSON) for each one <br/> <br/>
