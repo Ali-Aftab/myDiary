@@ -1,4 +1,5 @@
-const { Op } = require("sequelize");
+const Sequelize = require("sequelize");
+const { Op } = Sequelize;
 const { EntryTone, SentenceTone } = require("../db");
 
 module.exports.searchEntries = async (req, res) => {
@@ -40,5 +41,40 @@ module.exports.searchSentences = async (req, res) => {
     });
   } catch (error) {
     res.json({ message: "Error occured when searching your query!", error });
+  }
+};
+
+module.exports.detectAverageMood = async (req, res) => {
+  try {
+    const { userId } = req;
+    let averageMood;
+
+    const allEntries = await EntryTone.findAll({
+      where: {
+        userId,
+      },
+      attributes: [
+        [Sequelize.fn("AVG", Sequelize.col("anger")), "anger"],
+        [Sequelize.fn("AVG", Sequelize.col("disgust")), "disgust"],
+        [Sequelize.fn("AVG", Sequelize.col("fear")), "fear"],
+        [Sequelize.fn("AVG", Sequelize.col("joy")), "joy"],
+        [Sequelize.fn("AVG", Sequelize.col("sadness")), "sadness"],
+        [Sequelize.fn("AVG", Sequelize.col("analytical")), "analytical"],
+        [Sequelize.fn("AVG", Sequelize.col("confident")), "confident"],
+        [Sequelize.fn("AVG", Sequelize.col("tentative")), "tentative"],
+      ],
+    }).then((data) => {
+      averageMood = data;
+    });
+    res.json({
+      message: "Your average mood has been computed!",
+      data: averageMood,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message: "Error occured when trying to detect the average mood!",
+      error,
+    });
   }
 };
