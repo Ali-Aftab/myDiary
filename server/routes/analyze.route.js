@@ -2,6 +2,7 @@ const {
   searchEntries,
   searchSentences,
   detectAverageTone,
+  findSenToneMatch,
 } = require("../controllers/analyze.controller");
 const { authJwt } = require("../middleware");
 
@@ -22,4 +23,9 @@ module.exports = function (app) {
   );
 
   app.get("/api/analyze/averagetone", [authJwt.verifyToken], detectAverageTone);
+  app.get(
+    "/api/analyze/findToneMatch",
+    [authJwt.verifyToken],
+    findSenToneMatch
+  );
 };

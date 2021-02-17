@@ -78,3 +78,31 @@ module.exports.detectAverageTone = async (req, res) => {
     });
   }
 };
+
+module.exports.findSenToneMatch = async (req, res) => {
+  try {
+    const { userId } = req;
+    if (!req.body.tone) {
+      return res.json({ message: "Please type a proper tone in the body!" });
+    }
+    const allSentences = await SentenceTone.findAll({
+      where: {
+        userId,
+        [req.body.tone]: {
+          [Op.gte]: 0.5,
+        },
+      },
+    });
+    res.json({
+      message: `We have bits of your entires that you emit ${req.body.tone}`,
+      data: allSentences,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      message:
+        "Error occured when trying to find sentences that match to the emotion!",
+      error,
+    });
+  }
+};
