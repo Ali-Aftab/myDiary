@@ -16,7 +16,9 @@ To run this application:
 4.  Make a new PostgreSQL database by writing `createdb mydiary`
 5.  Create a .env file by typing `touch .env` to store your secret keys
 6.  In the .env file type
-    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/> > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/> > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
+    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/>
+    > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/>
+    > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
 7.  Type `npm run start-dev` in your terminal and you can use the API!
 
 ## API
@@ -33,7 +35,7 @@ How to signup and login.
 - POST `/api/auth/signin` when logged in, the response will give the user an access token. <br/>
   &nbsp;&nbsp;-Requires an email and password key inside the body. You will receive an x-access-token. For all routes below you must place your token in the header.<br/>
   &nbsp;&nbsp;-The x-access-token lasts for 24 hours. <br/>
-  &nbsp;&nbsp;-Example: {x-access-token: |X-ACCESS-TOKEN-KEY|} <br/>
+  &nbsp;&nbsp;-Example: {x-access-token: |X-ACCESS-TOKEN-KEY|} <br/> <br/>
 
 **NOTE: All Routes below require your x-access-token in the header!**
 
@@ -41,22 +43,22 @@ How to signup and login.
 
 - POST `/api/entry/newEntry` allows registered user to submit a diary entry <br/>
   &nbsp;&nbsp;-Requires a diary entry and assigned to the message key in the body. <br/>
-  &nbsp;&nbsp;-Example: {message: "I love Tacos, it makes me think better during the day!"} <br/>
+  &nbsp;&nbsp;-Example: {message: "I love Tacos, it makes me think better during the day!"} <br/> <br/>
 - GET `/api/entry/listAll` allows a user to view all their previous entries and the overall tone for each one. <br/>
-  &nbsp;&nbsp;-Will provide the entryToneId (will be labeled as "id" in the JSON) for each one <br/>
+  &nbsp;&nbsp;-Will provide the entryToneId (will be labeled as "id" in the JSON) for each one <br/> <br/>
 - GET `/api/entry/sentencetone/:entryToneId` allows a user to see the tone for each sentence written in one entry.<br/>
-  &nbsp;&nbsp;-Replace `:entryToneId` with the id in the URL. <br/>
+  &nbsp;&nbsp;-Replace `:entryToneId` with the id in the URL. <br/> <br/>
 
 ### Analyze Routes
 
 - GET `/api/analyze/search/entries/` allows a user to search their diary entries for any particular word.
   &nbsp;&nbsp;-Requires a word to be searched and assigned to the searchQuery key in the body. <br/>
-  &nbsp;&nbsp;-Example: {searchQuery: "taco"} <br/>
+  &nbsp;&nbsp;-Example: {searchQuery: "taco"} <br/> <br/>
 - GET `/api/analyze/search/sentences/` allows a user to search their diary entries for any particular word. Will only provide the exact sentences that match with the searched word. <br/>
   &nbsp;&nbsp;-Requires a word to be searched and assigned to the searchQuery key in the body. <br/>
-  &nbsp;&nbsp;-Example: {searchQuery: "taco"} <br/>
+  &nbsp;&nbsp;-Example: {searchQuery: "taco"} <br/> <br/>
 - GET `/api/analyze/averagetone` allows a user to find their average tone from all their diary entries. <br/>
-  &nbsp;&nbsp;-Will showcase the average tone for all 8 tones. <br/>
+  &nbsp;&nbsp;-Will showcase the average tone for all 8 tones. <br/> <br/>
 - GET `/api/analyze/findToneMatch` allows a user to find all sentences within their entries that emit a certain tone
   &nbsp;&nbsp;-Tone's that a user can pick from are: "anger", "disgust", "fear", "joy", "sadness", "analytical", "confident", or "tentative" <br/>
   &nbsp;&nbsp;-Requires a selected tone and assigned to the tone key in the body. <br/>
