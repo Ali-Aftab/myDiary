@@ -1,4 +1,7 @@
-const { searchEntries } = require("../controllers/analyze.controller");
+const {
+  searchEntries,
+  searchSentences,
+} = require("../controllers/analyze.controller");
 const { authJwt } = require("../middleware");
 
 module.exports = function (app) {
@@ -11,4 +14,9 @@ module.exports = function (app) {
   });
 
   app.get("/api/analyze/search/entries/", [authJwt.verifyToken], searchEntries);
+  app.get(
+    "/api/analyze/search/sentences/",
+    [authJwt.verifyToken],
+    searchSentences
+  );
 };
