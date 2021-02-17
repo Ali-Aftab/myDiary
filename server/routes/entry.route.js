@@ -1,6 +1,7 @@
 const {
   postNewEntry,
   listAllUserEntry,
+  listAllSenForOneEntry,
 } = require("../controllers/entry.controller");
 const { authJwt, sendEntryToIBM } = require("../middleware");
 
@@ -21,4 +22,9 @@ module.exports = function (app) {
   );
 
   app.get("/api/entry/listAll", [authJwt.verifyToken], listAllUserEntry);
+  app.get(
+    "/api/entry/sentencetone/:entryToneId",
+    [authJwt.verifyToken],
+    listAllSenForOneEntry
+  );
 };

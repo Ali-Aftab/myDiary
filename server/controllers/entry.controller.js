@@ -69,3 +69,35 @@ exports.listAllUserEntry = async (req, res) => {
     });
   }
 };
+
+exports.listAllSenForOneEntry = async (req, res) => {
+  try {
+    const { userId } = req;
+    let { entryToneId } = req.params;
+    const allSentences = await SentenceTone.findAll({
+      where: {
+        userId,
+        entryToneId,
+      },
+    });
+    if (allSentences.length === 0) {
+      res.json({
+        message:
+          "Could not find entry, please check to see if your entryToneId is correct!",
+        data: allSentences,
+      });
+    } else {
+      res.json({
+        message:
+          "You have received your tone analyzer for each sentence of your entry!",
+        data: allSentences,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({
+      error,
+      message: "Error occured when grabbing the sentences for your entry!",
+    });
+  }
+};
