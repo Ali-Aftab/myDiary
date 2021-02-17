@@ -16,9 +16,7 @@ To run this application:
 4.  Make a new PostgreSQL database by writing `createdb mydiary`
 5.  Create a .env file by typing `touch .env` to store your secret keys
 6.  In the .env file type
-    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/>
-    > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/>
-    > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
+    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/> > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/> > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
 7.  Type `npm run start-dev` in your terminal and you can use the API!
 
 ## API
@@ -57,7 +55,7 @@ How to signup and login.
 - GET `/api/analyze/search/sentences/` allows a user to search their diary entries for any particular word. Will only provide the exact sentences that match with the searched word.
   &nbsp;&nbsp;-Requires a word to be searched and assigned to the searchQuery key in the body. <br/>
   &nbsp;&nbsp;-Example: {searchQuery: "taco"} <br/>
-  -GET `/api/analyze/averagetone` allows a user to find their average tone from all their diary entries.
+- GET `/api/analyze/averagetone` allows a user to find their average tone from all their diary entries.
   &nbsp;&nbsp;-Will showcase the average tone for all 8 tones. <br/>
 - GET `/api/analyze/findToneMatch` allows a user to find all sentences within their entries that emit a certain tone
   &nbsp;&nbsp;-Tone's that a user can pick from are: "anger", "disgust", "fear", "joy", "sadness", "analytical", "confident", or "tentative" <br/>
