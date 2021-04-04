@@ -21,23 +21,27 @@ exports.postNewEntry = async (req, res) => {
     const newestDiaryEntry = await EntryTone.create(diaryPost);
 
     // loop to get all the emotions for each sentence
-    for (let i = 0; i < sentenceToneList.length; i++) {
-      const sentenceEl = sentenceToneList[i];
-      const oneSenPost = {};
+    if (sentenceToneList) {
+      for (let i = 0; i < sentenceToneList.length; i++) {
+        const sentenceEl = sentenceToneList[i];
+        const oneSenPost = {};
 
-      const senToneCategories = sentenceEl.tone_categories;
-      for (let i = 0; i < senToneCategories.length - 1; i++) {
-        const emotionCategory = senToneCategories[i].tones;
-        emotionCategory.map(
-          (emotion) => (oneSenPost[emotion.tone_id] = emotion.score)
-        );
+        const senToneCategories = sentenceEl.tone_categories;
+        for (let i = 0; i < senToneCategories.length - 1; i++) {
+          const emotionCategory = senToneCategories[i].tones;
+          emotionCategory.map(
+            (emotion) => (oneSenPost[emotion.tone_id] = emotion.score)
+          );
+        }
+
+        oneSenPost.message = sentenceEl.text;
+        oneSenPost.userId = req.userId;
+        oneSenPost.entryToneId = newestDiaryEntry.id;
+
+        const newestSentenceEntry = await SentenceTone.create(oneSenPost);
       }
-
-      oneSenPost.message = sentenceEl.text;
-      oneSenPost.userId = req.userId;
-      oneSenPost.entryToneId = newestDiaryEntry.id;
-
-      const newestSentenceEntry = await SentenceTone.create(oneSenPost);
+    } else {
+      const oneSentencePost = await SentenceTone.create(diaryPost);
     }
 
     res.json({
