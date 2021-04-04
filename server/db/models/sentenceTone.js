@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const SentenceTone = db.define("sentanceTone", {
+const SentenceTone = db.define("sentenceTone", {
   message: {
     type: Sequelize.TEXT,
   },
