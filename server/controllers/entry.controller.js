@@ -24,24 +24,33 @@ exports.postNewEntry = async (req, res) => {
     if (sentenceToneList) {
       for (let i = 0; i < sentenceToneList.length; i++) {
         const sentenceEl = sentenceToneList[i];
-        const oneSenPost = {};
+        let oneSenPost = {};
 
         const senToneCategories = sentenceEl.tone_categories;
-        for (let i = 0; i < senToneCategories.length - 1; i++) {
-          const emotionCategory = senToneCategories[i].tones;
-          emotionCategory.map(
-            (emotion) => (oneSenPost[emotion.tone_id] = emotion.score)
+        for (let j = 0; j < senToneCategories.length - 1; j++) {
+          const emotionCategory = senToneCategories[j].tones;
+          const oneSenToneCategory = emotionCategory.reduce(
+            (accum, emotion) => ({
+              ...accum,
+              [emotion.tone_id]: emotion.score,
+            }),
+            {}
           );
+          oneSenPost = { ...oneSenPost, ...oneSenToneCategory };
         }
 
+        console.log;
         oneSenPost.message = sentenceEl.text;
         oneSenPost.userId = req.userId;
         oneSenPost.entryToneId = newestDiaryEntry.id;
+        console.log(oneSenPost);
 
         const newestSentenceEntry = await SentenceTone.create(oneSenPost);
       }
     } else {
-      const oneSentencePost = await SentenceTone.create(diaryPost);
+      const oneSentencePostData = { ...diaryPost };
+      oneSentencePostData.entryToneId = newestDiaryEntry.id;
+      const oneSentencePost = await SentenceTone.create(oneSentencePostData);
     }
 
     res.json({
