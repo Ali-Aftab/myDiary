@@ -2,56 +2,20 @@ const { EntryTone, SentenceTone } = require("../db");
 
 exports.postNewEntry = async (req, res) => {
   try {
-    const { document_tone, sentences_tone } = req.entryResult;
-    const entryTonesList = document_tone.tone_categories;
-    const sentenceToneList = sentences_tone;
+    const { entryResult, sentencesResult } = req.entryResult;
 
-    const diaryPost = {};
-
-    //loop to get emotions for the entry model
-    for (let i = 0; i < entryTonesList.length - 1; i++) {
-      const emotionCategory = entryTonesList[i].tones;
-      emotionCategory.map(
-        (emotion) => (diaryPost[emotion.tone_id] = emotion.score)
-      );
-    }
-
+    const diaryPost = { ...entryResult.emotion.document.emotion };
     diaryPost.userId = req.userId;
     diaryPost.message = req.body.message;
     const newestDiaryEntry = await EntryTone.create(diaryPost);
 
-    // loop to get all the emotions for each sentence
-    if (sentenceToneList) {
-      for (let i = 0; i < sentenceToneList.length; i++) {
-        const sentenceEl = sentenceToneList[i];
-        let oneSenPost = {};
-
-        const senToneCategories = sentenceEl.tone_categories;
-        for (let j = 0; j < senToneCategories.length - 1; j++) {
-          const emotionCategory = senToneCategories[j].tones;
-          const oneSenToneCategory = emotionCategory.reduce(
-            (accum, emotion) => ({
-              ...accum,
-              [emotion.tone_id]: emotion.score,
-            }),
-            {}
-          );
-          oneSenPost = { ...oneSenPost, ...oneSenToneCategory };
-        }
-
-        console.log;
-        oneSenPost.message = sentenceEl.text;
-        oneSenPost.userId = req.userId;
-        oneSenPost.entryToneId = newestDiaryEntry.id;
-        console.log(oneSenPost);
-
-        const newestSentenceEntry = await SentenceTone.create(oneSenPost);
-      }
-    } else {
-      const oneSentencePostData = { ...diaryPost };
-      oneSentencePostData.entryToneId = newestDiaryEntry.id;
-      const oneSentencePost = await SentenceTone.create(oneSentencePostData);
-    }
+    sentencesResult.forEach(async (sentenceRes) => {
+      oneSenPost = { ...sentenceRes.result.emotion.document.emotion };
+      oneSenPost.message = sentenceRes.text;
+      oneSenPost.userId = req.userId;
+      oneSenPost.entryToneId = newestDiaryEntry.id;
+      const newestSentenceEntry = await SentenceTone.create(oneSenPost);
+    });
 
     res.json({
       message: "Your diary entry has been saved!",
