@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "start-dev": "webpack -w & nodemon index.js",
+    "start-dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "eslintConfig": {
@@ -37,8 +37,6 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "@webpack-cli/init": "^1.1.1",
-    "mocha": "^8.3.2",
-    "webpack": "^5.14.0"
+    "mocha": "^8.3.2"
   }
 }
