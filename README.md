@@ -16,9 +16,7 @@ To run this application:
 4.  Make a new PostgreSQL database by writing `createdb mydiary`
 5.  Create a .env file by typing `touch .env` to store your secret keys
 6.  In the .env file type
-    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/>
-    > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/>
-    > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
+    > `SECRET_JWT_KEY=|ENTER-YOUR-KEY-HERE|` <br/> > `IBM_WATSON_API_KEY=|ENTER-YOUR-APIKEY-HERE|` <br/> > `IBM_WATSON_API_URL=|ENTER-YOUR-PERSONAL-IBM-URL-HERE|` <br/>
 7.  Type `npm run start-dev` in your terminal and you can use the API!
 
 ## API
