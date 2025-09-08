@@ -60,6 +60,6 @@ How to signup and login.
 - GET `/api/analyze/averagetone` allows a user to find their average tone from all their diary entries. <br/>
   &nbsp;&nbsp;-Will showcase the average tone for all 8 tones. <br/> <br/>
 - GET `/api/analyze/findToneMatch` allows a user to find all sentences within their entries that emit a certain tone
-  &nbsp;&nbsp;-Tone's that a user can pick from are: "anger", "disgust", "fear", "joy", "sadness", "analytical", "confident", or "tentative" <br/>
+  &nbsp;&nbsp;-Tone's that a user can pick from are: "anger", "disgust", "fear", "joy", or "sadness" <br/>
   &nbsp;&nbsp;-Requires a selected tone and assigned to the tone key in the body. <br/>
   &nbsp;&nbsp;-Example: {tone: "joy"} <br/>
