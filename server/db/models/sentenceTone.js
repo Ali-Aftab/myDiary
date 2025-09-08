@@ -25,18 +25,6 @@ const SentenceTone = db.define("sentenceTone", {
     type: Sequelize.FLOAT,
     defaultValue: 0,
   },
-  analytical: {
-    type: Sequelize.FLOAT,
-    defaultValue: 0,
-  },
-  confident: {
-    type: Sequelize.FLOAT,
-    defaultValue: 0,
-  },
-  tentative: {
-    type: Sequelize.FLOAT,
-    defaultValue: 0,
-  },
   date: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,

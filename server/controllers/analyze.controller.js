@@ -59,9 +59,6 @@ module.exports.detectAverageTone = async (req, res) => {
         [Sequelize.fn("AVG", Sequelize.col("fear")), "fear"],
         [Sequelize.fn("AVG", Sequelize.col("joy")), "joy"],
         [Sequelize.fn("AVG", Sequelize.col("sadness")), "sadness"],
-        [Sequelize.fn("AVG", Sequelize.col("analytical")), "analytical"],
-        [Sequelize.fn("AVG", Sequelize.col("confident")), "confident"],
-        [Sequelize.fn("AVG", Sequelize.col("tentative")), "tentative"],
       ],
     }).then((data) => {
       averageMood = data;
