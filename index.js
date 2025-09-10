@@ -1,11 +1,14 @@
 const path = require("path");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const { db, User } = require("./server/db");
 const PORT = process.env.PORT || 8000;
 // const seed = require('./seed.js');
 global.__basedir = __dirname;
 require("dotenv").config();
+
+app.use(cors());
 
 //--------------------->Body parser <---------------------//
 const bodyParser = require("body-parser");
